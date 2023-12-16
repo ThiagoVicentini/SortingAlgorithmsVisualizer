@@ -81,7 +81,14 @@ void display(){
 };
 
 void keyboard(unsigned char key, int x, int y){
-    // Manage key
+    switch (key) {
+        case 'r': 
+            for(int i=0; i<(int)_array.size(); i++){
+                _array[i].value = LO + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(HI-LO)));
+                _array[i].color = {1, 0, 0};
+            }
+            break;
+    }
     glutPostRedisplay();
 }
 
