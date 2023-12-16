@@ -81,6 +81,26 @@ void display(){
     glutSwapBuffers();
 };
 
+void bubbleSort(){
+    for(int i=0; i<(int)_array.size(); i++){
+        for(int j=0; j<(int)_array.size()-i-1; j++){
+            _array[j].color = {0, 1, 1};
+            _array[j+1].color = {0, 1, 1};
+            if(_array[j].value > _array[j+1].value)
+                swap(_array[j].value, _array[j+1].value);
+            
+            display();
+            _array[j].color = {1, 0, 0};
+            if(j+1 == (int)_array.size()-i-1)
+                _array[j+1].color = {0, 1, 0};
+            else
+                _array[j].color = {1, 0, 0};
+        }
+        if(i == (int)_array.size()-1)
+            _array[i].color = {0, 1, 0};
+    }
+}
+
 void keyboard(unsigned char key, int x, int y){
     switch (key) {
         case 'r': 
@@ -91,6 +111,9 @@ void keyboard(unsigned char key, int x, int y){
             break;
         case 'S':
             sort(_array.begin(), _array.end(), sortLine);
+            break;
+        case 'b':
+            bubbleSort();
             break;
     }
     glutPostRedisplay();
