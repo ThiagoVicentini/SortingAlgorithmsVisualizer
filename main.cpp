@@ -100,6 +100,7 @@ void bubbleSort(){
         if(i == (int)_array.size()-1)
             _array[i].color = {0, 1, 0};
     }
+    display();
 }
 
 void selectionSort(){
