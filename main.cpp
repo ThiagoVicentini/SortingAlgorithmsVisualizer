@@ -126,6 +126,38 @@ void selectionSort(){
     display();
 }
 
+void doubleSelectionSort(){
+    for(int i=0; i<=(int)_array.size()-1-i; i++){
+        int min = i, max = (int)_array.size()-1-i;
+        _array[i].color = {0, 1, 1};
+        _array[(int)_array.size()-1-i].color = {1, 0, 1};
+        for(int j=i+1; j<=(int)_array.size()-1-i; j++){
+            if(_array[j].value < _array[min].value){
+                min = j;
+            } else if(_array[j].value > _array[max].value){
+                max = j;
+            }
+        }
+        _array[min].color = {0, 1, 1};
+        _array[max].color = {1, 0, 1};
+        usleep(10000);
+        display();
+
+        if(i!=min){
+            swap(_array[i].value, _array[min].value);
+            _array[min].color = {1, 0, 0};
+        }
+        if((int)_array.size()-1-i!=max){
+            swap(_array[(int)_array.size()-1-i].value, _array[max].value);
+            _array[max].color = {1, 0, 0};
+        }
+        
+        _array[i].color = {0, 1, 0};
+        _array[(int)_array.size()-1-i].color = {0, 1, 0};  
+    }
+    display();
+}
+
 void keyboard(unsigned char key, int x, int y){
     switch (key) {
         case 'r': 
@@ -142,6 +174,9 @@ void keyboard(unsigned char key, int x, int y){
             break;
         case 's':
             selectionSort();
+            break;
+        case 'd':
+            doubleSelectionSort();
             break;
     }
     glutPostRedisplay();
