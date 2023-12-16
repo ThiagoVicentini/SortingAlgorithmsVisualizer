@@ -101,6 +101,29 @@ void bubbleSort(){
     }
 }
 
+void selectionSort(){
+    for(int i=0; i<(int)_array.size()-1; i++){
+        int min = i;
+        _array[i].color = {0, 1, 1};
+        for(int j=i+1; j<(int)_array.size(); j++){
+            if(_array[j].value < _array[min].value){
+                min = j;
+            }
+        }
+        _array[min].color = {0, 1, 1};
+        display();
+        swap(_array[i].value, _array[min].value);
+        _array[i].color = {0, 1, 0};
+        if(i!=min)
+            _array[min].color = {1, 0, 0};
+        if(i == (int)_array.size()-2){
+            _array[i].color = {0, 1, 0};
+            _array[i+1].color = {0, 1, 0};
+        }
+    }
+    display();
+}
+
 void keyboard(unsigned char key, int x, int y){
     switch (key) {
         case 'r': 
@@ -114,6 +137,9 @@ void keyboard(unsigned char key, int x, int y){
             break;
         case 'b':
             bubbleSort();
+            break;
+        case 's':
+            selectionSort();
             break;
     }
     glutPostRedisplay();
