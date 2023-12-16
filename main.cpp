@@ -7,6 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <time.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -111,6 +112,7 @@ void selectionSort(){
             }
         }
         _array[min].color = {0, 1, 1};
+        usleep(8000);
         display();
         swap(_array[i].value, _array[min].value);
         _array[i].color = {0, 1, 0};
