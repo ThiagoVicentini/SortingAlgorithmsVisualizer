@@ -5,6 +5,7 @@
 #endif
 
 #include <vector>
+#include <algorithm>
 #include <time.h>
 
 using namespace std;
@@ -87,6 +88,9 @@ void keyboard(unsigned char key, int x, int y){
                 _array[i].value = LO + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(HI-LO)));
                 _array[i].color = {1, 0, 0};
             }
+            break;
+        case 'S':
+            sort(_array.begin(), _array.end(), sortLine);
             break;
     }
     glutPostRedisplay();
